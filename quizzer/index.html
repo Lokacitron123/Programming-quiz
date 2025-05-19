@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz Game - Test your knowledge</title>
+    <title>Quiz Game - Test your knowledge in HTML, CSS and JavaScript</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,12 +11,19 @@
       <!-- Start Screen -->
       <div class="screen active" id="start-screen">
         <h1>Quiz Time!</h1>
-        <p>Test your knowledge with these fun questions</p>
+        <p>
+          Test your knowledge with these fun questions from different
+          programming topics!
+        </p>
         <button id="start-btn">Start Quiz</button>
       </div>
 
       <!-- Subject Screen Screen -->
-      <div class="screen" id="subject-screen"></div>
+      <div class="screen" id="topic-screen">
+        <h1>Topics</h1>
+        <p>Select a topic to test your knowledge.</p>
+        <div class="topic-container" id="topic-container"></div>
+      </div>
 
       <!-- Quiz Screen -->
       <div class="screen" id="quiz-screen">

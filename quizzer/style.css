@@ -37,19 +37,28 @@ body {
   display: block;
 }
 
-/* START SCREEN */
-
-#start-screen h1 {
+/* START SCREEN & /* Topic screen */
+#start-screen h1,
+#topic-screen h1 {
   color: #e86a33;
   margin-bottom: 20px;
   font-size: 2.5rem;
 }
 
-#start-screen p {
+#start-screen p,
+#topic-screen p {
   color: #666;
   margin-bottom: 30px;
   font-size: 1.1rem;
 }
+
+.topic-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Question screen */
 
 .quiz-header {
   margin-bottom: 1rem;
