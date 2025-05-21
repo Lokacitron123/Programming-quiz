@@ -7,4 +7,4 @@
 - Connect selected topic with rest of JS code [🆗]
 - Make the site accessible []
 - Add Dark/Light Theme [🆗]
-- Add save/resume functionality []
+- Add save/resume functionality [🆗]
