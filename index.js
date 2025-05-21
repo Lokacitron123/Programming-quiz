@@ -4,6 +4,7 @@ const topicScreen = document.getElementById("topic-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
 const startButton = document.getElementById("start-btn");
+const backButton = document.getElementById("back-to-topics");
 const questionText = document.getElementById("question-text");
 const topicContainer = document.getElementById("topic-container");
 const answersContainer = document.getElementById("answers-container");
@@ -14,6 +15,7 @@ const finalScoreSpan = document.getElementById("final-score");
 const maxScoreSpan = document.getElementById("max-score");
 const resultMessage = document.getElementById("result-message");
 const restartButton = document.getElementById("restart-btn");
+const anotherTopicButton = document.getElementById("select-new-topic-btn");
 const progressBar = document.getElementById("progress");
 
 // QUIZ STATE VARS
@@ -473,10 +475,18 @@ maxScoreSpan.textContent = quizQuestions.length;
 
 startButton.addEventListener("click", moveToTopics);
 restartButton.addEventListener("click", restartQuiz);
+anotherTopicButton.addEventListener("click", showTopicScreen);
+backButton.addEventListener("click", backToTopics);
 
 function moveToTopics() {
   startScreen.classList.remove("active");
+  resultScreen.classList.remove("active");
+
+  // Show topic screen
   topicScreen.classList.add("active");
+
+  // Reset
+  topicContainer.innerHTML = "";
 
   topics.forEach((topic) => {
     const button = document.createElement("button");
@@ -500,7 +510,7 @@ function startQuiz(selectedTopic) {
   scoreSpan.textContent = 0;
   totalQuestionsSpan.textContent = quizQuestions.length;
 
-  topicScreen.remove("active");
+  topicScreen.classList.remove("active");
   quizScreen.classList.add("active");
 
   showQuestion();
@@ -575,6 +585,7 @@ function showResults() {
   resultScreen.classList.add("active");
 
   finalScoreSpan.textContent = score;
+  maxScoreSpan.textContent = quizQuestions.length;
 
   const percentage = (score / quizQuestions.length) * 100;
 
@@ -595,4 +606,19 @@ function restartQuiz() {
   resultScreen.classList.remove("active");
 
   startQuiz();
+}
+
+function backToTopics() {
+  selectedTopic = "";
+  quizQuestions = [];
+
+  quizScreen.classList.remove("active");
+  topicScreen.classList.add("active");
+}
+
+function showTopicScreen() {
+  selectedTopic = "";
+  quizQuestions = [];
+
+  moveToTopics();
 }

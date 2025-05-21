@@ -6,8 +6,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: light dark;
+
+  --bg-primary: light-dark(#19444a, #121212);
+  --bg-secondary: light-dark(#fff, #1e1e1e);
+
+  /* Text Colors */
+  --text-primary: light-dark(#121212, #ffffff);
+  --text-secondary: light-dark(#333, #cccccc);
+
+  /* Accent (e.g., buttons, highlights) */
+  --accent-primary: light-dark(#00a76d, #66b2ff);
+  --accent-secondary: light-dark(#ffea00, #000000);
+
+  --accent-hover-primary: light-dark(#28a745, #28a745);
+
+  --border: light-dark(#000000, #000000);
+
+  /* Correct and Error Feedback */
+  --color-correct: light-dark(#28a745, #62d278);
+  --color-error: light-dark(#dc3545, #ff6b81);
+}
+
 body {
-  background: #f5efe6;
+  background: var(--bg-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,13 +40,19 @@ body {
 }
 
 .container {
-  background-color: white;
+  background-color: var(--bg-secondary);
   border-radius: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 600px;
   overflow: hidden;
   position: relative;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 /* SCREENS */
@@ -40,14 +69,14 @@ body {
 /* START SCREEN & /* Topic screen */
 #start-screen h1,
 #topic-screen h1 {
-  color: #e86a33;
+  color: var(--text-primary);
   margin-bottom: 20px;
   font-size: 2.5rem;
 }
 
 #start-screen p,
 #topic-screen p {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 30px;
   font-size: 1.1rem;
 }
@@ -60,12 +89,21 @@ body {
 
 /* Question screen */
 
+.back-container {
+  text-align: end;
+  margin-bottom: 1rem;
+}
+
+.back-container button {
+  background-color: var(--accent-secondary);
+}
+
 .quiz-header {
   margin-bottom: 1rem;
 }
 
 #question-text {
-  color: #333;
+  color: var(--text);
   font-size: 1.5rem;
   margin-bottom: 1rem;
   line-height: 1.4;
@@ -74,7 +112,7 @@ body {
 .quiz-info {
   display: flex;
   justify-content: space-between;
-  color: #666;
+  color: var(--text);
   margin-bottom: 10px;
 }
 
@@ -86,9 +124,9 @@ body {
 }
 
 .answer-btn {
-  background-color: #f8f0e5;
-  color: #333;
-  border: 2px solid #eadbc8;
+  background-color: var(--accent-primary);
+  color: var(--text);
+  border: 2px solid var(--border);
   border-radius: 10px;
   padding: 1rem;
   cursor: pointer;
@@ -97,25 +135,25 @@ body {
 }
 
 .answer-btn:hover {
-  background-color: #eadbc8;
-  border-color: #dac0ae;
+  background-color: var(--accent-hover-primary);
+  border-color: var(--accent-hover);
 }
 
 .answer-btn.correct {
-  background-color: #e6fff0;
-  border-color: #a3f0c4;
-  color: #28a745;
+  background-color: var(--bg-secondary);
+  border-color: var(--color-correct);
+  color: var(--text-primary);
 }
 
 .answer-btn.incorrect {
-  background-color: #fff0f0;
-  border-color: #ffbdbd;
-  color: #dc3545;
+  background-color: var(--bg-secondary);
+  border-color: var(--color-error);
+  color: var(--text-primary);
 }
 
 .progress-bar {
   height: 10px;
-  background-color: #f8f0e5;
+  background-color: var(--accent-secondary);
   border-radius: 5px;
   overflow: hidden;
   margin-top: 20px;
@@ -123,7 +161,7 @@ body {
 
 .progress {
   height: 100%;
-  background-color: #e86a33;
+  background-color: var(--accent-primary);
   width: 0%;
   transition: width 0.3s ease;
 }
@@ -131,12 +169,12 @@ body {
 /* RESULT SCREEN */
 
 #result-screen h1 {
-  color: #e86a33;
+  color: var(--text-primary);
   margin-bottom: 30px;
 }
 
 .result-info {
-  background-color: #f8f0e5;
+  background-color: var(--bg-primary);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 30px;
@@ -144,19 +182,19 @@ body {
 
 .result-info p {
   font-size: 1.2rem;
-  color: #333;
+  color: var(--accent-secondary);
   margin-bottom: 1rem;
 }
 
 #result-message {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #e86a33;
+  color: var(--accent-secondary);
 }
 
 button {
-  background-color: #e86a33;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
   border: none;
   border-radius: 10px;
   padding: 15px 30px;
@@ -166,7 +204,17 @@ button {
 }
 
 button:hover {
-  background-color: #d45b28;
+  background-color: var(--accent-hover-primary);
+}
+
+#select-new-topic-btn {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+}
+
+#select-new-topic-btn:hover {
+  background-color: var(--accent-secondary);
 }
 
 /* RESPONSIVE DESIGN */

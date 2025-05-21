@@ -27,6 +27,11 @@
 
       <!-- Quiz Screen -->
       <div class="screen" id="quiz-screen">
+        <div class="back-container">
+          <button id="back-to-topics" aria-label="Go back to topics screen">
+            ❌
+          </button>
+        </div>
         <div class="quiz-header">
           <h2 id="question-text">Question goes here</h2>
           <div class="quiz-info">
@@ -59,7 +64,10 @@
 
           <div id="result-message">Good job!</div>
         </div>
-        <button id="restart-btn">Restart Quiz</button>
+        <div class="flex">
+          <button id="restart-btn">Restart Quiz</button>
+          <button id="select-new-topic-btn">Select another topic</button>
+        </div>
       </div>
     </div>
 
