@@ -6,4 +6,5 @@
 - Make logic for selecting a topic [🆗]
 - Connect selected topic with rest of JS code [🆗]
 - Make the site accessible []
-- Add Dark/Light Theme
+- Add Dark/Light Theme [🆗]
+- Add save/resume functionality []

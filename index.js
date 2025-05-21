@@ -4,6 +4,8 @@ const topicScreen = document.getElementById("topic-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
 const startButton = document.getElementById("start-btn");
+const resumeQuizButton = document.getElementById("resume-quiz-btn");
+const saveQuizButton = document.getElementById("save-progress");
 const backButton = document.getElementById("back-to-topics");
 const questionText = document.getElementById("question-text");
 const topicContainer = document.getElementById("topic-container");
@@ -474,9 +476,11 @@ maxScoreSpan.textContent = quizQuestions.length;
 // event listeners
 
 startButton.addEventListener("click", moveToTopics);
+resumeQuizButton.addEventListener("click", getSavedProgress);
 restartButton.addEventListener("click", restartQuiz);
 anotherTopicButton.addEventListener("click", showTopicScreen);
 backButton.addEventListener("click", backToTopics);
+saveQuizButton.addEventListener("click", saveProgress);
 
 function moveToTopics() {
   startScreen.classList.remove("active");
@@ -512,6 +516,33 @@ function startQuiz(selectedTopic) {
 
   topicScreen.classList.remove("active");
   quizScreen.classList.add("active");
+
+  showQuestion();
+}
+
+function resumeQuiz(progress) {
+  currentQuestionIndex = progress.currentQuestionIndex;
+  selectedTopic = progress.selectedTopic;
+  score = progress.score;
+
+  console.log("logging progress.topic before .find: ", progress.selectedTopic);
+
+  const topicObj = topics.find((t) => t.topic === progress.selectedTopic);
+  console.log("topicObj after .find", topicObj);
+  if (!topicObj) {
+    alert("Saved topic not found. Cannot resume quiz.");
+    return;
+  }
+
+  quizQuestions = topicObj.questions;
+
+  startScreen.classList.remove("active");
+  topicScreen.classList.remove("active");
+  resultScreen.classList.remove("active");
+  quizScreen.classList.add("active");
+
+  totalQuestionsSpan.textContent = quizQuestions.length;
+  scoreSpan.textContent = score;
 
   showQuestion();
 }
@@ -613,7 +644,8 @@ function backToTopics() {
   quizQuestions = [];
 
   quizScreen.classList.remove("active");
-  topicScreen.classList.add("active");
+
+  moveToTopics();
 }
 
 function showTopicScreen() {
@@ -621,4 +653,24 @@ function showTopicScreen() {
   quizQuestions = [];
 
   moveToTopics();
+}
+
+// Save to localStorage and resume quiz
+
+function saveProgress() {
+  const progress = {
+    selectedTopic,
+    currentQuestionIndex,
+    score,
+    timestamp: Date.now(),
+  };
+
+  localStorage.setItem("quizProgress", JSON.stringify(progress));
+  alert("Progress saved");
+}
+
+function getSavedProgress() {
+  const saved = localStorage.getItem("quizProgress");
+  const progress = JSON.parse(saved);
+  resumeQuiz(progress);
 }
