@@ -182,14 +182,14 @@ body {
 
 .result-info p {
   font-size: 1.2rem;
-  color: var(--accent-secondary);
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 #result-message {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--accent-secondary);
+  color: var(--text-primary);
 }
 
 button {
